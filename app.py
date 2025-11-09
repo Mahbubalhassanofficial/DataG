@@ -8,7 +8,13 @@ warnings.filterwarnings("ignore")
 from components.ui import inject_custom_css
 inject_custom_css()
 
-st.set_page_config(page_title="Survey Data Generator", page_icon="📊", layout="wide")
+st.set_page_config(
+    page_title="Survey Data Generator | B'Deshi Emerging Research Lab",
+    page_icon="assets/logo.png",  # or "📊" if you prefer emoji
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 
 # Initialize session state
 if 'variables' not in st.session_state:
@@ -368,7 +374,16 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.statistics = None
             st.rerun()
 
-# Footer (Branded)
-from components.ui import footer_brand
-footer_brand()
+def footer_brand():
+    st.markdown("""
+    <div class="footer-custom">
+        <strong>Developed by Mahbub Hassan</strong><br>
+        Department of Civil Engineering, Faculty of Engineering, Chulalongkorn University<br>
+        Founder, <a href="https://www.bdeshi-lab.org/" target="_blank" style="color:#b5121b; font-weight:bold; text-decoration:none;">B'Deshi Emerging Research Lab</a><br>
+        Email: <a href="mailto:mahbub.hassan@ieee.org">mahbub.hassan@ieee.org</a><br>
+        🌐 <a href="https://www.bdeshi-lab.org/" target="_blank" style="color:#b5121b; text-decoration:none;">www.bdeshi-lab.org</a><br>
+        © """ + str(datetime.now().year) + """ · All rights reserved.
+    </div>
+    """, unsafe_allow_html=True)
+
 
