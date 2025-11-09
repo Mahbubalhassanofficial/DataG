@@ -1,4 +1,3 @@
-# components/ui.py
 import streamlit as st
 from datetime import datetime
 
@@ -39,17 +38,16 @@ def inject_custom_css():
     }
     div.stButton > button:hover {
         background-color: #8a0e15;
-        color: #fff;
         transform: scale(1.02);
     }
 
-    /* === DATAFRAMES === */
+    /* === TABLES === */
     .stDataFrame, .stTable {
         border-radius: 10px;
         border: 1px solid #dcd0d5;
     }
 
-    /* === FOOTER BRANDING === */
+    /* === FOOTER === */
     footer {visibility: hidden;}
     .footer-custom {
         font-size: 0.9rem;
@@ -58,15 +56,4 @@ def inject_custom_css():
         padding: 1rem 0;
     }
     </style>
-    """, unsafe_allow_html=True)
-
-def footer_brand():
-    st.markdown("""
-    <div class="footer-custom">
-        <strong>Developed by Mahbub Hassan</strong><br>
-        Department of Civil Engineering, Faculty of Engineering, Chulalongkorn University<br>
-        Founder, B'Deshi Emerging Research Lab<br>
-        Email: <a href="mailto:mahbub.hassan@ieee.org">mahbub.hassan@ieee.org</a><br>
-        © """ + str(datetime.now().year) + """ · All rights reserved.
-    </div>
     """, unsafe_allow_html=True)
