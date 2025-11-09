@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Download, Plus, Trash2, Play, CheckCircle, AlertCircle, Settings, FileSpreadsheet, BarChart3, TrendingUp } from 'lucide-react';
 
 const SurveyDataGenerator = () => {
