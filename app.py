@@ -50,8 +50,14 @@ with st.sidebar:
     4. **Generate**: Create and download dataset
     """)
 
-# Tabs for different sections
-tab1, tab2, tab3, tab4 = st.tabs(["📝 Variables", "🔗 Relationships", "⚡ Advanced", "🎯 Generate & Results"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "📝 Variables",
+    "🔗 Relationships",
+    "⚡ Advanced",
+    "🎯 Generate & Results",
+    "📈 Visualization"
+])
+
 
 # ============================================================
 # TAB 1: VARIABLES
