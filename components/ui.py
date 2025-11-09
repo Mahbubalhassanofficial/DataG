@@ -7,22 +7,29 @@ from datetime import datetime
 def inject_custom_css():
     st.markdown("""
     <style>
-    /* === REMOVE DEFAULT BACKGROUND AND ENSURE FULL-COLOR COVERAGE === */
-    html, body, [class*="ViewContainer"], [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #eaf0f7 0%, #f5f7fa 100%) !important;
+    /* === RESET ALL DEFAULTS === */
+    html, body {
         background-color: #eaf0f7 !important;
         color: #111 !important;
     }
 
-    /* === MAIN CONTAINER CLEANUP === */
-    [data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"] {
-        background: none !important;
+    /* === STREAMLIT APP VIEW === */
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #eaf0f7 0%, #f4f7fb 100%) !important;
+    }
+
+    /* === MAIN PAGE BODY === */
+    .main, .block-container {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: #111 !important;
+        box-shadow: none !important;
     }
 
     /* === SIDEBAR === */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #002855 0%, #00509e 100%) !important;
-        color: white !important;
+        background: linear-gradient(180deg, #002855 0%, #004b93 100%) !important;
+        color: #ffffff !important;
     }
     [data-testid="stSidebar"] * {
         color: #ffffff !important;
@@ -51,7 +58,7 @@ def inject_custom_css():
         transform: scale(1.03) !important;
     }
 
-    /* === DATAFRAME / TABLE === */
+    /* === TABLES === */
     .stDataFrame, .stTable {
         border-radius: 10px !important;
         border: 1px solid #c7d2e0 !important;
@@ -65,7 +72,7 @@ def inject_custom_css():
         text-align: center !important;
         color: #444 !important;
         padding: 1.5rem 0 !important;
-        background: linear-gradient(90deg, #eaf0f7 0%, #f5f7fa 100%) !important;
+        background: linear-gradient(90deg, #eaf0f7 0%, #f4f7fb 100%) !important;
         border-top: 1px solid #c7d2e0 !important;
     }
 
@@ -78,6 +85,18 @@ def inject_custom_css():
     a.lab-link:hover {
         color: #0074cc !important;
         text-decoration: underline !important;
+    }
+
+    /* === INPUT BOXES === */
+    input, select, textarea, .stNumberInput input {
+        background-color: #f0f4fa !important;
+        border: 1px solid #c5d1e0 !important;
+        color: #002855 !important;
+        border-radius: 6px !important;
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: 2px solid #00509e !important;
+        background-color: #ffffff !important;
     }
     </style>
     """, unsafe_allow_html=True)
