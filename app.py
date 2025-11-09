@@ -5,7 +5,11 @@ from scipy.stats import multivariate_normal, skew, kurtosis
 import io
 import warnings
 warnings.filterwarnings("ignore")
-from components.ui import inject_custom_css
+
+# === Custom Branding and Styling ===
+from components.ui import inject_custom_css, footer_brand, disclaimer_note
+
+# Inject custom design and color theme
 inject_custom_css()
 
 st.set_page_config(page_title="Survey Data Generator", page_icon="📊", layout="wide")
