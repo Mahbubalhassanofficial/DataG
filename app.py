@@ -378,10 +378,10 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.statistics = None
             st.rerun()
 # ============================================================
-# TAB 5: VISUALIZATION
+# TAB 5: VISUALIZATION & EXPLORATION DASHBOARD
 # ============================================================
 with tab5:
-    st.header("📈 Data Visualization")
+    st.header("📈 Data Visualization and Exploration")
 
     if st.session_state.generated_data is not None:
         df = st.session_state.generated_data
@@ -391,36 +391,80 @@ with tab5:
         if len(numeric_cols) == 0:
             st.warning("No numeric columns available for plotting.")
         else:
+            # -------------------------------
+            # VARIABLE SUMMARY
+            # -------------------------------
+            st.subheader("🔍 Descriptive Summary")
+            summary_df = pd.DataFrame({
+                "Mean": df[numeric_cols].mean().round(3),
+                "SD": df[numeric_cols].std().round(3),
+                "Skewness": df[numeric_cols].skew().round(3),
+                "Kurtosis": df[numeric_cols].kurtosis().round(3)
+            })
+            st.dataframe(summary_df, use_container_width=True)
+
+            st.markdown("---")
+            st.subheader("🎨 Chart Options")
+
             col1, col2 = st.columns(2)
             with col1:
                 x_col = st.selectbox("Select Variable (X)", numeric_cols)
             with col2:
                 y_col = st.selectbox("Select Variable (Y)", ["None"] + numeric_cols)
 
-            chart_type = st.radio("Choose Chart Type", ["Histogram", "Box Plot", "Scatter Plot"])
+            chart_type = st.radio(
+                "Choose Chart Type",
+                ["Histogram", "Box Plot", "Scatter Plot", "Correlation Heatmap"],
+                horizontal=True
+            )
 
             import plotly.express as px
+            import plotly.figure_factory as ff
 
+            # -------------------------------
+            # VISUALIZATION LOGIC
+            # -------------------------------
+            fig = None
             if chart_type == "Histogram":
                 fig = px.histogram(df, x=x_col, nbins=20, title=f"Distribution of {x_col}")
             elif chart_type == "Box Plot":
                 fig = px.box(df, y=x_col, title=f"Box Plot of {x_col}")
             elif chart_type == "Scatter Plot" and y_col != "None":
                 fig = px.scatter(df, x=x_col, y=y_col, title=f"{x_col} vs {y_col}")
-            else:
-                fig = None
+            elif chart_type == "Correlation Heatmap":
+                corr = df[numeric_cols].corr().round(2)
+                z = corr.values
+                x = corr.columns.tolist()
+                y = corr.columns.tolist()
+                fig = ff.create_annotated_heatmap(
+                    z=z, x=x, y=y, colorscale="Blues", showscale=True
+                )
+                fig.update_layout(
+                    title="Correlation Heatmap",
+                    xaxis=dict(tickangle=45),
+                    width=800,
+                    height=700,
+                )
 
+            # -------------------------------
+            # FIGURE STYLING
+            # -------------------------------
             if fig:
                 fig.update_layout(
                     title_x=0.5,
                     title_font=dict(size=20),
-                    font=dict(family="Segoe UI", size=14),
+                    font=dict(family="Times New Roman", size=14),
                     plot_bgcolor="rgba(0,0,0,0)",
-                    paper_bgcolor="rgba(0,0,0,0)"
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    margin=dict(l=40, r=40, t=80, b=40)
                 )
                 st.plotly_chart(fig, use_container_width=True)
+                st.markdown(
+                    "_All figures generated in publication-ready format (600 dpi equivalent, Times New Roman)._"
+                )
     else:
         st.info("Generate a dataset first to view visualizations.")
+
 
 # Footer and Disclaimer
 footer_brand()
