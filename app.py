@@ -371,6 +371,50 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.generated_data = None
             st.session_state.statistics = None
             st.rerun()
+# ============================================================
+# TAB 5: VISUALIZATION
+# ============================================================
+with tab5:
+    st.header("📈 Data Visualization")
+
+    if st.session_state.generated_data is not None:
+        df = st.session_state.generated_data
+        st.success("✅ Data loaded for visualization")
+
+        numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+        if len(numeric_cols) == 0:
+            st.warning("No numeric columns available for plotting.")
+        else:
+            col1, col2 = st.columns(2)
+            with col1:
+                x_col = st.selectbox("Select Variable (X)", numeric_cols)
+            with col2:
+                y_col = st.selectbox("Select Variable (Y)", ["None"] + numeric_cols)
+
+            chart_type = st.radio("Choose Chart Type", ["Histogram", "Box Plot", "Scatter Plot"])
+
+            import plotly.express as px
+
+            if chart_type == "Histogram":
+                fig = px.histogram(df, x=x_col, nbins=20, title=f"Distribution of {x_col}")
+            elif chart_type == "Box Plot":
+                fig = px.box(df, y=x_col, title=f"Box Plot of {x_col}")
+            elif chart_type == "Scatter Plot" and y_col != "None":
+                fig = px.scatter(df, x=x_col, y=y_col, title=f"{x_col} vs {y_col}")
+            else:
+                fig = None
+
+            if fig:
+                fig.update_layout(
+                    title_x=0.5,
+                    title_font=dict(size=20),
+                    font=dict(family="Segoe UI", size=14),
+                    plot_bgcolor="rgba(0,0,0,0)",
+                    paper_bgcolor="rgba(0,0,0,0)"
+                )
+                st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info("Generate a dataset first to view visualizations.")
 
 # Footer and Disclaimer
 footer_brand()
