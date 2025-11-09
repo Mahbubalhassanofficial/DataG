@@ -8,13 +8,7 @@ warnings.filterwarnings("ignore")
 from components.ui import inject_custom_css
 inject_custom_css()
 
-st.set_page_config(
-    page_title="Survey Data Generator | B'Deshi Emerging Research Lab",
-    page_icon="assets/logo.png",  # or "📊" if you prefer emoji
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
+st.set_page_config(page_title="Survey Data Generator", page_icon="📊", layout="wide")
 
 # Initialize session state
 if 'variables' not in st.session_state:
