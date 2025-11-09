@@ -116,3 +116,20 @@ def footer_brand():
         © {datetime.now().year} · All rights reserved.
     </div>
     """, unsafe_allow_html=True)
+# ===============================================================
+# ⚠️ 3. Disclaimer Section
+# ===============================================================
+def disclaimer_note():
+    st.markdown("""
+    <div style="
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+        font-style: italic;
+    ">
+        ⚠️ <strong>Disclaimer:</strong> This tool is developed solely for academic learning and research training purposes.
+        It is not intended for commercial use or for generating real survey data.
+    </div>
+    """, unsafe_allow_html=True)
