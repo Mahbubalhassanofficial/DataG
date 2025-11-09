@@ -368,16 +368,7 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.statistics = None
             st.rerun()
 
-def footer_brand():
-    st.markdown("""
-    <div class="footer-custom">
-        <strong>Developed by Mahbub Hassan</strong><br>
-        Department of Civil Engineering, Faculty of Engineering, Chulalongkorn University<br>
-        Founder, <a href="https://www.bdeshi-lab.org/" target="_blank" style="color:#b5121b; font-weight:bold; text-decoration:none;">B'Deshi Emerging Research Lab</a><br>
-        Email: <a href="mailto:mahbub.hassan@ieee.org">mahbub.hassan@ieee.org</a><br>
-        🌐 <a href="https://www.bdeshi-lab.org/" target="_blank" style="color:#b5121b; text-decoration:none;">www.bdeshi-lab.org</a><br>
-        © """ + str(datetime.now().year) + """ · All rights reserved.
-    </div>
-    """, unsafe_allow_html=True)
-
+# Footer (Branded)
+from components.ui import footer_brand
+footer_brand()
 
