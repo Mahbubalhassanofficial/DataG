@@ -368,7 +368,8 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.statistics = None
             st.rerun()
 
-# Footer (Branded)
-from components.ui import footer_brand
+# Footer and Disclaimer
 footer_brand()
+disclaimer_note()
+
 
