@@ -2,72 +2,82 @@ import streamlit as st
 from datetime import datetime
 
 # ===============================================================
-# 🌐 1. Custom CSS Injection (Royal Blue & Silver Theme)
+# 🌐 1. Custom CSS Injection (Royal Blue & Silver Theme – Enhanced)
 # ===============================================================
 def inject_custom_css():
     st.markdown("""
     <style>
-    /* === GLOBAL BACKGROUND === */
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #f9fafc 0%, #eef2f7 100%);
+    /* === REMOVE DEFAULT BACKGROUND AND ENSURE FULL-COLOR COVERAGE === */
+    html, body, [class*="ViewContainer"], [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #eaf0f7 0%, #f5f7fa 100%) !important;
+        background-color: #eaf0f7 !important;
+        color: #111 !important;
+    }
+
+    /* === MAIN CONTAINER CLEANUP === */
+    [data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"] {
+        background: none !important;
     }
 
     /* === SIDEBAR === */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #002855 0%, #00509e 100%);
-        color: white;
+        background: linear-gradient(180deg, #002855 0%, #00509e 100%) !important;
+        color: white !important;
     }
     [data-testid="stSidebar"] * {
         color: #ffffff !important;
-        font-family: 'Segoe UI', sans-serif;
+        font-family: 'Segoe UI', sans-serif !important;
     }
 
     /* === HEADERS === */
     h1, h2, h3, h4 {
-        color: #002855;
-        font-family: 'Segoe UI', sans-serif;
-        font-weight: 700;
+        color: #002855 !important;
+        font-family: 'Segoe UI', sans-serif !important;
+        font-weight: 700 !important;
     }
 
     /* === BUTTONS === */
     div.stButton > button {
-        background-color: #00509e;
-        color: #ffffff;
-        border-radius: 6px;
-        padding: 0.5rem 1rem;
-        font-weight: 600;
-        border: none;
-        transition: all 0.25s ease-in-out;
+        background-color: #00509e !important;
+        color: #ffffff !important;
+        border-radius: 6px !important;
+        padding: 0.5rem 1rem !important;
+        font-weight: 600 !important;
+        border: none !important;
+        transition: all 0.25s ease-in-out !important;
     }
     div.stButton > button:hover {
-        background-color: #0074cc;
-        transform: scale(1.03);
+        background-color: #0074cc !important;
+        transform: scale(1.03) !important;
     }
 
-    /* === TABLES === */
+    /* === DATAFRAME / TABLE === */
     .stDataFrame, .stTable {
-        border-radius: 10px;
-        border: 1px solid #c7d2e0;
+        border-radius: 10px !important;
+        border: 1px solid #c7d2e0 !important;
+        background-color: #ffffff !important;
     }
 
     /* === FOOTER === */
-    footer {visibility: hidden;}
+    footer {visibility: hidden !important;}
     .footer-custom {
-        font-size: 0.9rem;
-        text-align: center;
-        color: #444;
-        padding: 1.5rem 0;
-        background-color: #f2f4f8;
-        border-top: 1px solid #c7d2e0;
+        font-size: 0.9rem !important;
+        text-align: center !important;
+        color: #444 !important;
+        padding: 1.5rem 0 !important;
+        background: linear-gradient(90deg, #eaf0f7 0%, #f5f7fa 100%) !important;
+        border-top: 1px solid #c7d2e0 !important;
     }
+
+    /* === LINKS === */
     a.lab-link {
-        color: #00509e;
-        font-weight: 700;
-        text-decoration: none;
+        color: #00509e !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
     }
     a.lab-link:hover {
-        color: #0074cc;
-        text-decoration: underline;
+        color: #0074cc !important;
+        text-decoration: underline !important;
     }
     </style>
     """, unsafe_allow_html=True)
