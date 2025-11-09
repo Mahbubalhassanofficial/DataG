@@ -4,6 +4,11 @@ import numpy as np
 from scipy.stats import multivariate_normal, skew, kurtosis
 import io
 import warnings
+from components.ui import inject_custom_css, footer_brand
+
+# Apply custom color theme
+inject_custom_css()
+
 warnings.filterwarnings("ignore")
 from components.ui import inject_custom_css
 inject_custom_css()
