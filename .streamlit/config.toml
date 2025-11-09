@@ -1,8 +1,13 @@
 [theme]
-primaryColor="#6366f1"
-backgroundColor="#ffffff"
-secondaryBackgroundColor="#f3f4f6"
-textColor="#1f2937"
+# --- Chulalongkorn University inspired color scheme ---
+primaryColor = "#b5121b"          # Deep pinkish-red (CU branding)
+backgroundColor = "#fffafc"       # Soft off-white background
+secondaryBackgroundColor = "#f6ecf2" # Subtle pastel pink accent
+textColor = "#1a1a1a"             # Near-black readable text
+font = "sans serif"
 
 [server]
-maxUploadSize = 200
+maxUploadSize = 500
+
+[client]
+toolbarMode = "minimal"
