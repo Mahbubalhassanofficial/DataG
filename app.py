@@ -5,6 +5,8 @@ from scipy.stats import multivariate_normal, skew, kurtosis
 import io
 import warnings
 warnings.filterwarnings("ignore")
+from components.ui import inject_custom_css
+inject_custom_css()
 
 st.set_page_config(page_title="Survey Data Generator", page_icon="📊", layout="wide")
 
@@ -366,6 +368,7 @@ constructs = {[v['name'] for v in st.session_state.variables]}
             st.session_state.statistics = None
             st.rerun()
 
-# Footer
-st.markdown("---")
-st.markdown("**Survey Data Generator** | Create realistic synthetic survey datasets for research and education")
+# Footer (Branded)
+from components.ui import footer_brand
+footer_brand()
+
